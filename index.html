@@ -4,23 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI-Powered Lead Generation</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        body { font-family: 'Poppins', sans-serif; text-align: center; padding: 15px; background: black; color: white; overflow-x: hidden; }
-        .container { max-width: 700px; margin: auto; }
-        .features { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 15px; }
-        .feature-item { display: flex; align-items: center; gap: 10px; background: rgba(255, 255, 255, 0.15); padding: 12px; border-radius: 8px; width: 75%; text-align: left; font-size: 16px; font-weight: 500; transition: transform 0.3s ease; }
-        .feature-item:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.3); }
-        .feature-icon { font-size: 22px; }
-        .popup, .thank-you { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); background: rgba(255, 255, 255, 0.95); padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0px 0px 25px rgba(232, 220, 204, 1); animation: popupFadeIn 0.5s ease-in-out forwards; color: black; width: 90%; max-width: 350px; }
-        .popup.show, .thank-you.show { display: block; }
-        .popup p, .thank-you p { font-size: 18px; font-weight: bold; color: black; }
-        .popup input { width: 85%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ff416c; font-size: 14px; }
-        .popup button { background: linear-gradient(90deg, #e6a927, #e68920); color: white; border: none; padding: 12px 24px; font-size: 18px; border-radius: 8px; cursor: pointer; transition: 0.3s ease; }
-        .popup button:hover { transform: scale(1.1); box-shadow: 0 0 15px rgba(84, 148, 95, 1); }
-        .thank-you img { width: 80px; margin-top: 8px; }
-        @keyframes popupFadeIn { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); } 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -48,22 +32,6 @@
             <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Success">
         </div>
     </div>
-    <script>
-        function showPopup() { document.getElementById("popup").classList.add("show"); }
-        function submitLead() {
-            let name = document.getElementById("lead-name").value;
-            let email = document.getElementById("lead-email").value;
-            let contact = document.getElementById("lead-contact").value;
-            if (name && email && contact) {
-                document.getElementById("popup").classList.remove("show");
-                document.getElementById("user-name").innerText = name;
-                document.getElementById("thank-you").classList.add("show");
-                setTimeout(() => { document.getElementById("thank-you").classList.remove("show"); }, 5000);
-            } else {
-                alert("⚠ Please fill in all fields correctly.");
-            }
-        }
-        setTimeout(showPopup, 5000);
-    </script>
+    <script src="script.js"></script>
 </body>
-</html>  
+</html>
