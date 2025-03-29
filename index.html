@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Lead Generation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        body { font-family: 'Poppins', sans-serif; text-align: center; padding: 20px; background: black; color: white; overflow-x: hidden; font-size: 14px; }
+        .container { max-width: 800px; margin: auto; }
+        .features { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 20px; }
+        .feature-item { display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.15); padding: 8px; border-radius: 6px; width: 75%; text-align: left; font-size: 16px; font-weight: 600; transition: transform 0.3s ease; }
+        .feature-item:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.3); }
+        .feature-icon { font-size: 20px; }
+        .popup, .thank-you { font-size: 14px; padding: 20px; border-radius: 12px; }
+        .popup input { width: 85%; padding: 10px; margin: 10px 0; border-radius: 5px; font-size: 14px; }
+        .popup button { font-size: 16px; padding: 12px 24px; border-radius: 8px; }
+        .thank-you p { font-size: 16px; }
+        .notifications { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: 14px; text-align: center; color: white; font-weight: bold; text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="font-size: 36px;">Dominate Your Market with AI-Powered Leads 🔥🚀</h1>
+        <p style="font-size: 14px;">Experience cutting-edge automation and AI-driven outreach to capture 1000+ high-converting leads</p>
+        
+        <h2 style="font-size: 24px;">Why Choose Us?</h2>
+        <div class="features">
+            <div class="feature-item"><span class="feature-icon">🚀</span> <span>Next-Level AI Outreach to connect with your dream clients.</span></div>
+            <div class="feature-item"><span class="feature-icon">🎯</span> <span>Laser-Targeted Leads that boost your sales effortlessly.</span></div>
+            <div class="feature-item"><span class="feature-icon">💰</span> <span>Explosive Conversions & Revenue Growth—Faster than ever.</span></div>
+            <div class="feature-item"><span class="feature-icon">⚡</span> <span>Save Time, Close Deals, and Automate Your Success.</span></div>
+        </div>
+        
+        <p style="font-size: 14px;">Ready to take your business to the next level?🚀</p>
+    </div>
+    
+    <div class="notifications" id="notifications"></div>
+    
+    <script>
+        const messages = [
+                        "Michael Johnson closed a deal🚀",
+            "Jessica Brown purchased the Elite Plan✨",
+            "Emily Smith claimed leads🔥",
+            "David Williams purchased the Pro Plan⚡",
+            "Christopher Davis closed a deal🚀",
+            "James Wilson purchased the Pro Plan⚡",
+            "Ashley Miller claimed leads🔥",
+            "Sarah Moore purchased the Elite Plan✨",
+            "Daniel Taylor closed a deal🚀",
+            "Matthew Thomas purchased the Pro Plan⚡",
+            "Jennifer Anderson claimed leads🔥",
+            "Amanda Martinez purchased the Elite Plan✨",
+            "Ryan White closed a deal🚀",
+            "Kevin Clark purchased the Pro Plan⚡",
+            "Laura Harris claimed leads🔥",
+            "Megan Lewis purchased the Elite Plan✨",
+            "Brian Hall closed a deal🚀",
+            "Justin Young purchased the Pro Plan⚡",
+            "Nicole Allen claimed leads🔥",
+            "Rachel King purchased the Elite Plan✨",
+            "Olivia Wilson claimed leads🔥",
+            "Liam MacDonald purchased the Pro Plan⚡",
+            "Ethan Tremblay closed a deal🚀",
+            "Charlotte Thompson purchased the Elite Plan✨",
+            "Benjamin Smith closed a deal🚀",
+            "Noah Brown purchased the Pro Plan⚡",
+            "Ava Campbell claimed leads🔥",
+            "Emma Walker purchased the Elite Plan✨",
+            "Sophia Lee claimed leads🔥",
+            "Lucas Robinson purchased the Pro Plan⚡",
+            "Jackson Reid closed a deal🚀",
+            "Mia Scott purchased the Elite Plan✨",
+            "Carter Edwards closed a deal🚀",
+            "Logan Wright purchased the Pro Plan⚡",
+            "Isabelle Martin claimed leads🔥",
+            "Hannah Bennett purchased the Elite Plan✨",
+            "Jacob Carter closed a deal🚀",
+            "Nathan Green purchased the Pro Plan⚡",
+            "Victoria Hughes claimed leads🔥",
+            "Chloe Foster purchased the Elite Plan✨",
+            "Aisha Al Zaabi claimed leads🔥",
+            "Khalid Al Nahyan purchased the Pro Plan⚡",
+            "Mohammed Al Mansoori closed a deal🚀",
+            "Fatima Al Qasimi purchased the Elite Plan✨",
+            "Ahmed Bin Rashid closed a deal🚀",
+            "Omar Al Futtaim purchased the Pro Plan⚡",
+            "Noor Al Habtoor claimed leads🔥",
+            "Layla Al Suwaidi purchased the Elite Plan✨",
+            "Saif Al Falasi closed a deal🚀",
+            "Yasmin Al Shamsi claimed leads🔥"
+        ];
+        
+        function showNotification() {
+            const notificationElement = document.getElementById("notifications");
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            notificationElement.innerText = messages[randomIndex];
+            setTimeout(() => {
+                notificationElement.innerText = "";
+            }, 7000);
+        }
+        
+        setInterval(showNotification, 10000);
+    </script>
+</body>
+</html>
