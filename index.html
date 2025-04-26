@@ -1,169 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-  <title>Berger Hut</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Lead Generation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        body { font-family: 'Poppins', sans-serif; text-align: center; padding: 15px; background: black; color: white; overflow-x: hidden; }
+        .container { max-width: 700px; margin: auto; }
+        .features { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 15px; }
+        .feature-item { display: flex; align-items: center; gap: 10px; background: rgba(255, 255, 255, 0.15); padding: 12px; border-radius: 8px; width: 75%; text-align: left; font-size: 16px; font-weight: 500; transition: transform 0.3s ease; }
+        .feature-item:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.3); }
+        .feature-icon { font-size: 22px; }
+        .popup, .thank-you { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); background: rgba(255, 255, 255, 0.95); padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0px 0px 25px rgba(232, 220, 204, 1); animation: popupFadeIn 0.5s ease-in-out forwards; color: black; width: 90%; max-width: 350px; }
+        .popup.show, .thank-you.show { display: block; }
+        .popup p, .thank-you p { font-size: 18px; font-weight: bold; color: black; }
+        .popup input { width: 85%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ff416c; font-size: 14px; }
+        .popup button { background: linear-gradient(90deg, #e6a927, #e68920); color: white; border: none; padding: 12px 24px; font-size: 18px; border-radius: 8px; cursor: pointer; transition: 0.3s ease; }
+        .popup button:hover { transform: scale(1.1); box-shadow: 0 0 15px rgba(84, 148, 95, 1); }
+        .thank-you img { width: 80px; margin-top: 8px; }
+        @keyframes popupFadeIn { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); } 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+    </style>
 </head>
-
 <body>
-	<header>
-	  <div class="logo">
-		<img src="iconlogo.png" alt="Berger Hut Logo">
-	  </div>
-	  <nav>
-		<ul>
-		  <li><a href="#home">Home</a></li>
-		  <li><a href="#about">About</a></li>
-		  <li><a href="#menu">Menu</a></li>
-		  <li><a href="#reservations">Reservations</a></li>
-		  <li><a href="#contact">Contact</a></li>
-		</ul>
-	  </nav>
-	</header>
+    <div class="container">
+        <h1>Dominate Your Market with AI-Powered Leads 🔥🚀</h1>
+        <p>Capture 1000+ high-converting leads with AI-driven automation.</p>
+        <h2>Why Choose Us?</h2>
+        <div class="features">
+            <div class="feature-item"><span class="feature-icon">🚀</span> <span>Next-Level AI Outreach to connect with your dream clients.</span></div>
+            <div class="feature-item"><span class="feature-icon">🎯</span> <span>Laser-Targeted Leads that boost your sales effortlessly.</span></div>
+            <div class="feature-item"><span class="feature-icon">💰</span> <span>Explosive Conversions & Revenue Growth—Faster than ever.</span></div>
+            <div class="feature-item"><span class="feature-icon">⚡</span> <span>Save Time, Close Deals, and Automate Your Success.</span></div>
+        </div>
+        <p>Ready to grow your business?🚀</p>
 
-<section class="hero">
-  <div class="hero-content">
-    <h1>Welcome to Berger Hut</h1>
-    <p>Experience the Taste of Perfection</p>
-    <a href="#menu" class="btn">Explore Our Menu</a>
-  </div>
-</section>
+        <div class="popup" id="popup">
+            <p>Get 1000+ Verified AI-Driven Leads🚀</p>
+            <p>Enter Your Details Below:</p>
+            <input type="text" placeholder="Your Name" id="lead-name" required>
+            <input type="email" placeholder="Your Email" id="lead-email" required>
+            <input type="tel" placeholder="Your Contact Number" id="lead-contact" required>
+            <input type="tel" placeholder="Your Whatsapp Number" id="lead-whatsapp" required>
+            <button onclick="submitLead()">Claim My Leads</button>
+        </div>
 
-<section class="about dark-theme">
-  <div class="about-content">
-    <h2>About Berger Hut</h2>
-    <p>Experience the finest gourmet burgers in a cozy and rustic atmosphere. At Berger Hut, we are dedicated to delivering exceptional flavors that will tantalize your taste buds.</p>
-    <p>Our chefs meticulously craft each burger using locally sourced ingredients and unique flavor combinations. From juicy beef patties to mouthwatering vegetarian options, there's something for everyone.</p>
-    <a href="#menu" class="btn">Explore Our Menu</a>
-  </div>
-  <div class="about-image">
-    <img src="about-image.jpg" alt="About Image">
-  </div>
-</section>
-
-
-<section class="menu">
-  <h2>Our Menu</h2>
-  <div class="menu-items">
-    <div class="menu-item">
-      <img src="burger1.jpg" alt="Burger 1">
-      <h3>Classic Cheeseburger</h3>
-      <p>A juicy beef patty topped with melted cheese, fresh lettuce, tomato, and our special sauce. Served with a side of crispy fries.</p>
+        <div class="thank-you" id="thank-you">
+            <p>🎉 Thank You, <span id="user-name"></span> 🚀</p>
+            <p>Your AI-powered leads are on the way</p>
+            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Success">
+        </div>
     </div>
-    <div class="menu-item">
-      <img src="burger2.jpg" alt="Burger 2">
-      <h3>Veggie Delight</h3>
-      <p>A delicious veggie patty made from a blend of fresh vegetables and spices. Topped with avocado, sprouts, and tangy mayo. Served with a side of sweet potato fries.</p>
-    </div>
-    <div class="menu-item">
-      <img src="burger3.jpg" alt="Burger 3">
-      <h3>Spicy BBQ Burger</h3>
-      <p>A fiery burger packed with flavor! Grilled chicken breast smothered in spicy BBQ sauce, topped with jalapenos, crispy onion rings, and chipotle mayo. Served with a side of coleslaw.</p>
-    </div>
-  </div>
-</section>
 
-<section class="reservations">
-  <div class="reservation-form">
-    <h2>Make a Reservation</h2>
-    <form>
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <input type="tel" name="phone" placeholder="Phone Number" required>
-      <input type="date" name="date" required>
-      <input type="time" name="time" required>
-      <textarea name="message" placeholder="Additional Message" rows="5"></textarea>
-      <button type="submit">Submit</button>
-    </form>
-  </div>
-</section>
+    <script>
+        function showPopup() {
+            document.getElementById("popup").classList.add("show");
+        }
 
+        function submitLead() {
+            let name = document.getElementById("lead-name").value.trim();
+            let email = document.getElementById("lead-email").value.trim();
+            let contact = document.getElementById("lead-contact").value.trim();
+            let whatsapp = document.getElementById("lead-whatsapp").value.trim();
 
-<section class="testimonials">
-  <h2>What Our Customers Say</h2>
-  <div class="testimonial">
-    <img src="customer1.jpg" alt="Customer 1">
-    <p>"The burgers at Berger Hut are simply amazing! The flavors are rich, and the ingredients are always fresh. It's my go-to place whenever I'm craving a delicious meal."</p>
-    <h4>John Doe</h4>
-  </div>
-  <div class="testimonial">
-    <img src="customer2.jpg" alt="Customer 2">
-    <p>"Berger Hut never disappoints! The quality of their burgers and the friendly service make it a top-notch dining experience. I highly recommend it to all burger lovers!"</p>
-    <h4>Jane Smith</h4>
-  </div>
-</section>
+            if (name && email && contact && whatsapp) {
+                // Yeh IDs sahi hain based on your provided form
+                let formData = new FormData();
+                formData.append("entry.412927767", name);
+                formData.append("entry.1478995014", email);
+                formData.append("entry.1790491938", contact);
+                formData.append("entry.945161907", whatsapp);
 
+                fetch("https://docs.google.com/forms/d/e/1FAIpQLSe1F4C9qhzZFyP1PFd4scx9oMYkw_eqtxNzbD-dw_iYMfBkRQ/formResponse", {
+                    method: "POST",
+                    body: formData,
+                    mode: "no-cors"
+                }).then(() => {
+                    document.getElementById("popup").classList.remove("show");
+                    document.getElementById("user-name").innerText = name;
+                    document.getElementById("thank-you").classList.add("show");
+                    setTimeout(() => {
+                        document.getElementById("thank-you").classList.remove("show");
+                    }, 5000);
+                }).catch((error) => {
+                    console.error("Error submitting the form!", error);
+                });
+            } else {
+                alert("⚠ Please fill in all fields correctly.");
+            }
+        }
 
-<section class="gallery">
-  <h2>Gallery</h2>
-  <div class="image-grid">
-    <div class="image-item">
-      <img src="gallery1.jpg" alt="Image 1">
-    </div>
-    <div class="image-item">
-      <img src="gallery2.jpg" alt="Image 2">
-    </div>
-    <div class="image-item">
-      <img src="gallery3.jpg" alt="Image 3">
-    </div>
-    <div class="image-item">
-      <img src="gallery4.jpg" alt="Image 4">
-    </div>
-  </div>
-</section>
-
-<section class="contact">
-  <div class="contact-container">
-    <h2>Contact Us</h2>
-    <div class="contact-info">
-      <div class="info-item">
-        <i class="fas fa-map-marker-alt"></i>
-        <p>123 Main Street, City, Country</p>
-      </div>
-      <div class="info-item">
-        <i class="fas fa-phone-alt"></i>
-        <p>+1 234 567 890</p>
-      </div>
-      <div class="info-item">
-        <i class="fas fa-envelope"></i>
-        <p>info@bergerhut.com</p>
-      </div>
-    </div>
-    <form class="contact-form">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </div>
-</section>
-
-
-
-
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-logo">
-      <img src="iconlogo.png" alt="Logo">
-    </div>
-    <nav class="footer-links">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Menu</a>
-      <a href="#">Reservations</a>
-      <a href="#">Testimonials</a>
-      <a href="#">Gallery</a>
-      <a href="#">Contact</a>
-    </nav>
-    <div class="footer-social">
-      <a href="#"><i class="fab fa-facebook"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-    </div>
-  </div>
-  <p class="footer-text">&copy; 2023 Berger Hut. All rights reserved.</p>
-</footer>
+        setTimeout(showPopup, 5000);
+    </script>
 </body>
+</html> 
