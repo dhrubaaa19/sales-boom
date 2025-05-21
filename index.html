@@ -143,7 +143,8 @@
         background-position: 0% 50%;
       }
     }
-        <!-- Floating Button -->
+
+    /* Floating Button */
       body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -153,8 +154,8 @@
 
     .fab-container {
       position: fixed;
-      bottom: 16px;
-      right: 16px;
+      bottom: 20px;
+      right: 20px;
       z-index: 999;
     }
 
@@ -244,7 +245,7 @@
     }
     
 /* Sidebar */
-    #sidebar {
+  #sidebar {
   position: fixed;
   top: 0;
   right: 0;
@@ -289,7 +290,7 @@
     }
 
     .social-icons img {
-      height: 1.3rem;
+      height: 2.5rem;
       width: auto;
     }
 
@@ -308,15 +309,15 @@
     }
 
     .bar {
-      height: 4px;
+      height: 3px;
       width: 100%;
       background-color: red;
       border-radius: 2px;
-      transition: all 0.4s ease;
+      transition: all 0.3s ease;
     }
 
     .hamburger.active .bar1 {
-      transform: rotate(45deg) translate(5px, 5px);
+      transform: rotate(48deg) translate(5px, 5px);
     }
 
     .hamburger.active .bar2 {
@@ -324,7 +325,7 @@
     }
 
     .hamburger.active .bar3 {
-      transform: rotate(-45deg) translate(5px, -5px);
+      transform: rotate(-48deg) translate(5px, -5px);
     }
 
     /* Overlay */
@@ -370,53 +371,33 @@
       }
 
       .social-icons img {
-        height: 0.95rem;
+        height: 1.25rem;
       }
 
       .hamburger {
         width: 26px;
-        height: 20px;
+        height: 22px;
       }
 
       .bar {
         height: 3px;
       }
     }
+
+    .zust-logo {
+  height: 4.3rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .zust-logo {
+    height: 3.5rem; /* Adjust the size as per your preference */
+  }
+}
+      
   </style>
 </head>
 <body>
-  
-  <!-- Hamburger Icon -->
-  <div class="hamburger" onclick="toggleSidebar()" id="hamburger">
-    <div class="bar bar1"></div>
-    <div class="bar bar2"></div>
-    <div class="bar bar3"></div>
-  </div>
-
-  <!-- Sidebar -->
-  <div id="sidebar">
-    <a href="index.html">Zustmeal</a>
-    <a href="#">Why Zustmeal?</a>
-    <a href="Menu.html">Taste Zone</a>
-    <a href="price.html">Unlock Meals</a>
-    <a href="https://wa.me/919531468479?text=Yo%2C%20send%20me%20my%20referral%20link.%20I%20want%20to%20refer%20a%20friend.">Become a Brand Ambassador</a>
-    <div class="follow-text">Let’s vibe on</div>
-    <div class="social-icons">
-      <a href="https://www.instagram.com/zustmeal?igsh=eTh2N2JvajMzMnlv" target="_blank">
-        <img src="instagram.png" alt="Instagram"/>
-      </a>
-      <a href="https://www.instagram.com/zustmeal?igsh=eTh2N2JvajMzMnlv" target="_blank">
-        <img src="facebook.png" alt="Facebook"/>
-      </a>
-      <a href="https://www.instagram.com/zustmeal?igsh=eTh2N2JvajMzMnlv" target="_blank">
-        <img src="x.png" alt="X"/>
-      </a>
-    </div>
-  </div>
-
-  <!-- Overlay -->
-  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
-  
   <header>
     <h1>Choose Your ZustMeal Plan</h1>
     <p>Find the perfect plan to match your appetite and routine</p>
@@ -427,20 +408,21 @@
     <div class="rotating-border-wrapper">
       <div class="plan-card">
         <h2>3-Day Trial Plan</h2>
+        <p>₹<strong>151 for 3 days</strong></p>
         <p>Perfect for new customers looking to explore our flavors before committing.</p>
-        <p class="duration">Duration: 3 days</p>
-        <p class="working-days">* 3 meals for 3 days</p>
-        <!-- For 3-Day Trial Plan -->
-<button onclick="window.location.href='form.html?plan=trial'">Select Plan</button>
+        <p class="duration">Duration: Trial period</p>
+        <p class="working-days">* 3 days</p>
+        <button onclick="window.location.href='form.html?plan=trial'">Select Plan</button>
       </div>
     </div>
 
     <!-- Mid-Month Magic -->
     <div class="plan-card">
-      <h2>Mid-Month Magic (15 Days)</h2>
-      <p><strong>₹1599 for 1 meal (Lunch/Dinner) • ₹3099 for both</strong></p>
-      <p>Perfect for office-goers and students who need fresh meals for the mid-month period.</p>
-      <p class="duration">Duration: 15 Days</p>
+      <h2>Monthly Munchies</h2>
+      <p>₹<strong>1601 for 1 meal (Lunch/Dinner)</strong></p>
+      <p>₹<strong>3101 for both meals (Lunch & Dinner)</strong></p>
+      <p><strong>Your month, made tastier.</strong> Monthly Munchies brings you daily meals crafted for comfort, energy, and pure satisfaction.</p>
+      <p class="duration">Duration: One Month</p>
       <p class="working-days">* 26 working days</p>
       <!-- For Mid-Month Magic -->
 <button onclick="window.location.href='form.html?plan=mid'">Select Plan</button>
@@ -448,23 +430,23 @@
 
     <!-- Monthly Munchies -->
     <div class="plan-card">
-      <h2>Monthly Munchies</h2>
-      <p><strong>₹1599 for 1 meal (Lunch/Dinner) • ₹3099 for both</strong></p>
-      <p>Hassle-free monthly solution for daily eaters who want consistency and value.</p>
-      <p class="duration">Duration: 1 Month</p>
-      <p class="working-days">* 26 working days</p>
+      <h2>Mid-Month Magic</h2>
+      <p>₹<strong>1001 for one meal (Lunch/Dinner)</strong></p>
+      <p>₹<strong>1701 for both meals (Lunch & Dinner)</strong></p>
+      <p><strong>Perfect for the busy half</strong> — Mid-Month Magic brings you half month of tasty meals, just when you need them most.</p>
+      <p class="duration">Duration: Half-Month</p>
+      <p class="working-days">* 13 working days</p>
       <!-- For Monthly Munchies -->
 <button onclick="window.location.href='form.html?plan=monthly'">Select Plan</button>
     </div>
   </main>
-
-   <!-- Floating Action Button -->
+  <!-- Floating Action Button -->
 <div class="fab-container">
   <div class="fab-options" id="fabOptions">
-    <a href="tel:+919531468479" class="fab-icon">
+    <a href="tel:+919365294816" class="fab-icon">
       <img src="phone.png" alt="Phone">
     </a>
-    <a href="https://wa.me/919531468479text=Hello%20ZustMeal.%20I’m%20new%20in%20the%20city%20and%20interested%20in%20your%20meal%20service%2C%20hoping%20to%20find%20a%20little%20comfort%20and%20care%20in%20every%20bite%20❤" class="fab-icon">
+    <a href="https://wa.me/919365294816?text=Hello%20Zustmeal.%20I%E2%80%99m%20new%20in%20the%20city%20and%20interested%20in%20your%20meal%20service%2C%20hoping%20to%20find%20a%20little%20comfort%20and%20care%20in%20every%20bite%20❤️" class="fab-icon">
   <img src="whatsapp.png" alt="WhatsApp">
     </a>
   </div>
@@ -473,12 +455,12 @@
     <img id="close" src="x-logo.png" alt="Close Icon">
   </button>
 </div>
-  
   <footer>
     <p>© 2025 ZustMeal. Made with ❤️ for your hunger.</p>
   </footer>
+  
   <script>
-   /* Hamburger Icon */
+  <!-- Hamburger Icon -->
      function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
       const overlay = document.getElementById('overlay');
