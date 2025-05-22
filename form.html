@@ -3,117 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ZustMeal User Details</title>
+  <title>ZustMeal Booking</title>
   <style>
     :root {
-      --yellow: rgb(255, 200, 45);
+      --yellow: #ffc82d;
       --red: #dc281e;
-      --text-dark: #000000;
-      --light-bg: #fff8ef;
-    }
-
-    * {
-      box-sizing: border-box;
+      --bg-light: #fff8ef;
+      --dark: #222;
     }
 
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: var(--light-bg);
-      color: var(--text-dark);
-      line-height: 1.6;
+      background: var(--bg-light);
+      color: var(--dark);
       padding-bottom: 100px;
     }
 
     header {
       background: var(--yellow);
-      color: #1a1a1a;
-      padding: 1.5rem 1rem;
+      padding: 1.5rem;
       text-align: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     header h1 {
       margin: 0;
-      font-size: 1.7rem;
       color: var(--red);
-    }
-
-    header p {
-      font-size: 0.95rem;
-      margin: 0.3rem 0 0;
+      font-size: 1.6rem;
     }
 
     main {
-      max-width: 95%;
-      width: 100%;
+      max-width: 600px;
       margin: 2rem auto;
-      padding: 1.5rem;
+      padding: 2rem;
       background: white;
       border-radius: 1rem;
       box-shadow: 0 6px 16px rgba(0,0,0,0.07);
     }
 
-    form > div {
-      margin-bottom: 1.25rem;
-    }
-
     label {
       font-weight: 600;
-      margin-bottom: 0.25rem;
       display: block;
+      margin-bottom: 6px;
     }
 
-    input, select, textarea {
+    input, textarea, select {
       width: 100%;
-      padding: 0.9rem;
+      padding: 0.8rem;
+      border-radius: 0.5rem;
       border: 1px solid #ccc;
-      border-radius: 0.75rem;
       font-size: 1rem;
-      background: #fefefe;
     }
 
-    input:focus, textarea:focus, select:focus {
-      outline: none;
+    input:focus, select:focus, textarea:focus {
       border-color: var(--red);
-      background: #fffdf8;
+      outline: none;
     }
 
     button {
-      padding: 0.4rem 0.4rem;
-      background-color: var(--red);
+      background: var(--red);
       color: white;
+      padding: 0.8rem 1.5rem;
       border: none;
-      border-radius: 30px;
-      font-size: 1rem;
+      border-radius: 2rem;
       font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-      width: 100%;
-      max-width: 210px;
-      margin: 0 auto;
       display: block;
+      margin-top: 1rem;
     }
 
-    button:hover {
-      background-color: #b02018;
+    .form-group {
+      margin-bottom: 1.2rem;
     }
 
-    .hidden {
-      display: none !important;
-    }
-
-    .popup-overlay {
+    #popup {
+      display: none;
       position: fixed;
       top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(0, 0, 0, 0.5);
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.6);
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       z-index: 9999;
     }
 
@@ -121,16 +94,15 @@
       background: white;
       padding: 2rem;
       border-radius: 1rem;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      max-width: 320px;
       width: 90%;
+      max-width: 400px;
       position: relative;
+      text-align: center;
     }
 
     .spinner {
-      border: 5px solid #eee;
-      border-top: 5px solid var(--red);
+      border: 4px solid #eee;
+      border-top: 4px solid var(--red);
       border-radius: 50%;
       width: 40px;
       height: 40px;
@@ -139,250 +111,206 @@
     }
 
     @keyframes spin {
-      0% { transform: rotate(0deg); }
+      0% { transform: rotate(0); }
       100% { transform: rotate(360deg); }
     }
 
-    .popup-message {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .popup-message.success {
-      color: green;
-      animation: successFadeIn 0.6s ease-out;
-    }
-
-    .popup-message.error {
-      color: red;
-    }
-
     .popup-close {
-      background: var(--red);
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      display: none;
       position: absolute;
-      right: 16px;
+      right: 10px;
       top: 10px;
+      background: var(--red);
+      border: none;
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
+      display: none;
     }
 
     footer {
-      text-align: center;
-      padding: 1.5rem;
-      background: var(--yellow);
-      color: var(--text-dark);
-      font-size: 0.9rem;
       position: fixed;
       bottom: 0;
       width: 100%;
+      background: var(--yellow);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
       z-index: 100;
-    }
-
-    @keyframes successFadeIn {
-      0% { transform: scale(0.9) translateY(20px); opacity: 0; }
-      100% { transform: scale(1) translateY(0); opacity: 1; }
-    }
-
-    .terms-container {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    .terms-container input[type="checkbox"] {
-      margin-top: 3px;
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-    }
-
-    .terms-container a {
-      color: red;
-      text-decoration: underline;
-      font-weight: bold;
-    }
-
-    @media (min-width: 600px) {
-      main { max-width: 520px; }
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Complete Your Plan</h1>
-    <p>We just need a few more details</p>
+    <h1>ZustMeal Booking</h1>
   </header>
 
   <main>
-    <div id="existing-user-section">
+    <div class="form-group">
       <label for="customer-id">Customer ID</label>
-      <div style="display: flex; align-items: center; justify-content: space-between;">
-        <input type="text" id="customer-id" placeholder="e.g. - Dhru816" style="flex: 1; margin-right: 1rem;" />
-        <span id="new-user-toggle" style="white-space: nowrap; cursor: pointer;">New to <span style="color: red;">Zustmeal</span>?</span>
+      <div style="display: flex; gap: 10px;">
+        <input type="text" id="customer-id" placeholder="e.g. DHRU816" />
+        <button type="button" id="check-id">Check</button>
       </div>
     </div>
 
-    <form id="plan-form" class="hidden">
-      <div>
-        <label for="name">Full Name</label>
-        <input type="text" required name="name" id="name" placeholder="Your Name" />
+    <div class="form-group">
+      <button type="button" id="new-user">New to ZustMeal?</button>
+    </div>
+
+    <form id="meal-form" class="hidden">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" name="name" required />
       </div>
-      <div>
-        <label for="phone">Contact Number</label>
-        <input type="tel" required name="phone" id="phone" placeholder="10-digit number" pattern="[0-9]{10}" />
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" name="phone" required pattern="[0-9]{10}" />
       </div>
-      <div>
-        <label for="alt_phone">Alternate Contact Number</label>
-        <input type="tel" name="alt_phone" id="alt_phone" placeholder="Optional alternate number" />
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" name="email" required />
       </div>
-      <div>
-        <label for="email">Email Address</label>
-        <input type="email" required name="email" id="email" placeholder="zustmeal@gmail.com" />
+
+      <div class="form-group">
+        <label>Address</label>
+        <textarea name="address" required></textarea>
       </div>
-      <div>
-        <label for="address">Full Delivery Address</label>
-        <textarea required name="address" id="address" rows="3" placeholder="Complete address with area, landmark, etc."></textarea>
+
+      <div class="form-group">
+        <label>Meal Time Slot</label>
+        <strong>Lunch</strong>
+        <label><input type="checkbox" name="slot" value="12:00 PM - 02:00 PM" /> 12:00 PM - 02:00 PM</label>
+        <label><input type="checkbox" name="slot" value="02:00 PM - 04:00 PM" /> 02:00 PM - 04:00 PM</label>
+        <label><input type="checkbox" name="slot" value="04:00 PM - 05:00 PM" /> 04:00 PM - 05:00 PM</label>
+        <strong>Dinner</strong>
+        <label><input type="checkbox" name="slot" value="06:00 PM - 08:00 PM" /> 06:00 PM - 08:00 PM</label>
+        <label><input type="checkbox" name="slot" value="08:00 PM - 10:00 PM" /> 08:00 PM - 10:00 PM</label>
       </div>
-      <div>
-        <label for="pincode">Pin Code</label>
-        <input type="text" required name="pincode" id="pincode" pattern="[0-9]{6}" placeholder="6-digit PIN" />
+
+      <div class="form-group">
+        <label>Transaction ID</label>
+        <input type="text" name="transaction" required />
       </div>
-      <div>
-        <label for="flatname">House / Flat / PG Name</label>
-        <input type="text" required name="flatname" id="flatname" placeholder="e.g., Green Residency, PG Elite" />
+
+      <div class="form-group">
+        <label><input type="checkbox" required /> I agree to the terms & privacy</label>
       </div>
-      <div>
-        <label for="slot">Preferred Delivery Time Slot</label>
-        <select required name="slot" id="slot">
-          <option value="">Select Time Slot</option>
-          <option value="1-3">1:00 PM - 3:00 PM</option>
-          <option value="3-5">3:00 PM - 5:00 PM</option>
-        </select>
-      </div>
-      <div>
-        <label for="payment_mode">Mode of Payment</label>
-        <select required name="payment_mode" id="payment_mode">
-          <option value="">Select Payment Mode</option>
-          <option value="upi">UPI</option>
-          <option value="bank">Bank Transfer</option>
-        </select>
-      </div>
-      <div id="upi-details" class="hidden">
-        <label>Scan & Pay</label>
-        <img src="your-upi-qr-code.png" alt="UPI QR" style="width: 160px; margin-bottom: 10px;" />
-        <div style="margin-top: 0.5rem;">
-            <span><strong>UPI ID:</strong> 9365294816@okbizaxis</span>
-        </div>
-      </div>
-      <div id="bank-details" class="hidden">
-        <label>Bank Transfer Details</label>
-        <div style="line-height: 1.7;">
-          <div><strong>Account Name:</strong> ZustMeal Services</div>
-          <div><strong>Account Number:</strong> 1234567890</div>
-          <div><strong>IFSC:</strong> HDFC0001234</div>
-          <div><strong>Bank Name:</strong> HDFC Bank</div>
-        </div>
-      </div>
-      <div>
-        <label for="transaction_id">Transaction ID</label>
-        <input type="text" required name="transaction_id" id="transaction_id" placeholder="Enter Transaction Reference" />
-      </div>
-      <div class="terms-container">
-        <input type="checkbox" id="terms" required />
-        <label for="terms">
-          I have read and agree to the 
-          <a href="terms.html" target="_blank">Terms & Conditions</a> and 
-          <a href="privacy.html" target="_blank">Privacy Policy</a> of ZustMeal.
-        </label>
-      </div>
-      <button type="submit">Submit My Meal Plan</button>
+
+      <button type="submit">Submit Booking</button>
     </form>
   </main>
 
-  <footer id="footer">
-    <p>© 2025 ZustMeal. Made with ❤️ for your hunger.</p>
-  </footer>
-
-  <div id="popup" style="display: none;" class="popup-overlay">
+  <div id="popup">
     <div class="popup-box">
       <div id="popupSpinner" class="spinner"></div>
-      <p id="popupMessage" class="popup-message">Processing...</p>
-      <button id="popupClose" class="popup-close">X</button>
+      <p id="popupMessage">Processing...</p>
+      <button id="popupClose" class="popup-close">×</button>
     </div>
   </div>
 
+  <footer>
+    <p>© 2025 ZustMeal. Fresh meals delivered with care.</p>
+  </footer>
+
   <script>
-    const planForm = document.getElementById('plan-form');
+    const mealForm = document.getElementById('meal-form');
+    const checkIdBtn = document.getElementById('check-id');
+    const newUserBtn = document.getElementById('new-user');
     const customerIdInput = document.getElementById('customer-id');
-    const newUserToggle = document.getElementById('new-user-toggle');
     const popup = document.getElementById('popup');
     const spinner = document.getElementById('popupSpinner');
     const message = document.getElementById('popupMessage');
-    const popupCloseBtn = document.getElementById('popupClose');
-    const paymentSelect = document.getElementById('payment_mode');
-    const upiDetails = document.getElementById('upi-details');
-    const bankDetails = document.getElementById('bank-details');
+    const popupClose = document.getElementById('popupClose');
 
-    const EXISTING_CUSTOMER_IDS = ['Dhru816', 'Zust123', 'Alex007']; // Example for simulation
+    // REPLACE THIS WITH YOUR DEPLOYED APP SCRIPT URL
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwOabWzSxFsnxYRRnFbUEG8lccG__K4KRlSMJEN0XIoZ0qEhZCMQNrpSly2o-_69Ud2ZQ/exec';
 
-    customerIdInput.addEventListener('blur', () => {
-      const cid = customerIdInput.value.trim();
-      if (!cid) return;
+    checkIdBtn.addEventListener('click', async () => {
+      const id = customerIdInput.value.trim();
+      if (!id) return alert('Please enter Customer ID.');
 
       popup.style.display = 'flex';
-      message.textContent = 'Checking Customer ID...';
       spinner.style.display = 'block';
-      popupCloseBtn.style.display = 'none';
+      message.textContent = 'Checking...';
+      popupClose.style.display = 'none';
 
-      setTimeout(() => {
-        const exists = EXISTING_CUSTOMER_IDS.includes(cid);
+      try {
+        const res = await fetch(`${SCRIPT_URL}?customerId=${id}`);
+        const data = await res.json();
         spinner.style.display = 'none';
-        message.textContent = '';
-        popup.style.display = 'none';
+        popupClose.style.display = 'block';
 
-        planForm.classList.remove('hidden');
-        const fullFields = ['name','phone','alt_phone','email','address','pincode','flatname'];
-        fullFields.forEach(id => document.getElementById(id).closest('div').classList.toggle('hidden', exists));
-      }, 1200);
+        if (data.exists) {
+          message.textContent = 'Welcome back! Fill in your transaction below.';
+          mealForm.classList.remove('hidden');
+          mealForm.querySelectorAll('input, textarea').forEach(input => {
+            if (!['transaction', 'slot'].includes(input.name)) {
+              input.closest('.form-group').style.display = 'none';
+            }
+          });
+        } else {
+          message.textContent = 'Customer ID not found. Please register as a new user.';
+        }
+
+      } catch (err) {
+        message.textContent = 'Error checking ID. Try again.';
+        popupClose.style.display = 'block';
+      }
     });
 
-    newUserToggle.addEventListener('click', () => {
-      document.getElementById('existing-user-section').style.display = 'none';
-      planForm.classList.remove('hidden');
+    newUserBtn.addEventListener('click', () => {
+      mealForm.classList.remove('hidden');
+      mealForm.querySelectorAll('.form-group').forEach(group => group.style.display = '');
     });
 
-    paymentSelect.addEventListener('change', () => {
-      const val = paymentSelect.value;
-      upiDetails.classList.toggle('hidden', val !== 'upi');
-      bankDetails.classList.toggle('hidden', val !== 'bank');
-    });
+    popupClose.addEventListener('click', () => popup.style.display = 'none');
 
-    popupCloseBtn.addEventListener('click', () => {
-      popup.style.display = 'none';
-    });
-
-    planForm.addEventListener('submit', function(e) {
+    mealForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      popup.style.display = 'flex';
-      message.textContent = 'Processing...';
-      spinner.style.display = 'block';
-      popupCloseBtn.style.display = 'none';
+      const formData = new FormData(mealForm);
+      const slots = Array.from(mealForm.querySelectorAll('input[name="slot"]:checked'))
+                         .map(i => i.value).join(', ');
+      if (!slots) return alert('Select at least one time slot.');
 
-      setTimeout(() => {
+      const payload = {
+        'Customer ID': customerIdInput.value || '',
+        'Full Name': formData.get('name') || '',
+        'Contact Number': formData.get('phone') || '',
+        'Email Address': formData.get('email') || '',
+        'Full Delivery Address': formData.get('address') || '',
+        'Delivery Time Slot': slots,
+        'Transaction ID': formData.get('transaction') || ''
+      };
+
+      popup.style.display = 'flex';
+      spinner.style.display = 'block';
+      message.textContent = 'Submitting...';
+      popupClose.style.display = 'none';
+
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: new URLSearchParams(payload)
+        });
+        const result = await res.json();
         spinner.style.display = 'none';
-        message.textContent = '✅ Submitted successfully';
-        message.classList.add('success');
-        popupCloseBtn.style.display = 'block';
-        planForm.reset();
-      }, 1800);
+        message.textContent = result.result === 'success'
+          ? 'Submitted successfully!'
+          : 'Submission failed. Try again.';
+        popupClose.style.display = 'block';
+        if (result.result === 'success') mealForm.reset();
+
+      } catch (err) {
+        spinner.style.display = 'none';
+        message.textContent = 'Network error. Try again.';
+        popupClose.style.display = 'block';
+      }
     });
   </script>
 </body>
