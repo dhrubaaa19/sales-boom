@@ -1,3 +1,4 @@
+<!-- ✅ FULLY READY HTML FILE BELOW - JUST REPLACE YOUR SCRIPT URL -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,6 +76,10 @@
 
     .form-group {
       margin-bottom: 1.2rem;
+    }
+
+    .hidden {
+      display: none !important;
     }
 
     #popup {
@@ -182,14 +187,22 @@
       </div>
 
       <div class="form-group">
-        <label>Meal Time Slot</label>
-        <strong>Lunch</strong>
-        <label><input type="checkbox" name="slot" value="12:00 PM - 02:00 PM" /> 12:00 PM - 02:00 PM</label>
-        <label><input type="checkbox" name="slot" value="02:00 PM - 04:00 PM" /> 02:00 PM - 04:00 PM</label>
-        <label><input type="checkbox" name="slot" value="04:00 PM - 05:00 PM" /> 04:00 PM - 05:00 PM</label>
-        <strong>Dinner</strong>
-        <label><input type="checkbox" name="slot" value="06:00 PM - 08:00 PM" /> 06:00 PM - 08:00 PM</label>
-        <label><input type="checkbox" name="slot" value="08:00 PM - 10:00 PM" /> 08:00 PM - 10:00 PM</label>
+        <label>Lunch Time Slot</label>
+        <select name="lunch_slot">
+          <option value="">Select Lunch Slot</option>
+          <option value="12:00 PM - 02:00 PM">12:00 PM - 02:00 PM</option>
+          <option value="02:00 PM - 04:00 PM">02:00 PM - 04:00 PM</option>
+          <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Dinner Time Slot</label>
+        <select name="dinner_slot">
+          <option value="">Select Dinner Slot</option>
+          <option value="06:00 PM - 08:00 PM">06:00 PM - 08:00 PM</option>
+          <option value="08:00 PM - 10:00 PM">08:00 PM - 10:00 PM</option>
+        </select>
       </div>
 
       <div class="form-group">
@@ -227,8 +240,8 @@
     const message = document.getElementById('popupMessage');
     const popupClose = document.getElementById('popupClose');
 
-    // REPLACE THIS WITH YOUR DEPLOYED APP SCRIPT URL
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwOabWzSxFsnxYRRnFbUEG8lccG__K4KRlSMJEN0XIoZ0qEhZCMQNrpSly2o-_69Ud2ZQ/exec';
+    // ✅ PASTE YOUR SCRIPT URL BELOW
+    const SCRIPT_URL = 'https://script.google.com/macros/library/d/1YJX0JV68w-Yq5ArHGMmtv7Hb9eTTBUNg45IylygicpW63st63qgBqFce/3';
 
     checkIdBtn.addEventListener('click', async () => {
       const id = customerIdInput.value.trim();
@@ -248,8 +261,8 @@
         if (data.exists) {
           message.textContent = 'Welcome back! Fill in your transaction below.';
           mealForm.classList.remove('hidden');
-          mealForm.querySelectorAll('input, textarea').forEach(input => {
-            if (!['transaction', 'slot'].includes(input.name)) {
+          mealForm.querySelectorAll('input, textarea, select').forEach(input => {
+            if (!['transaction', 'lunch_slot', 'dinner_slot'].includes(input.name)) {
               input.closest('.form-group').style.display = 'none';
             }
           });
@@ -274,9 +287,14 @@
       e.preventDefault();
 
       const formData = new FormData(mealForm);
-      const slots = Array.from(mealForm.querySelectorAll('input[name="slot"]:checked'))
-                         .map(i => i.value).join(', ');
-      if (!slots) return alert('Select at least one time slot.');
+      const lunch = formData.get('lunch_slot');
+      const dinner = formData.get('dinner_slot');
+      const combinedSlot = [lunch, dinner].filter(Boolean).join(', ');
+
+      if (!combinedSlot) {
+        alert('Please select at least one time slot (Lunch or Dinner).');
+        return;
+      }
 
       const payload = {
         'Customer ID': customerIdInput.value || '',
@@ -284,7 +302,7 @@
         'Contact Number': formData.get('phone') || '',
         'Email Address': formData.get('email') || '',
         'Full Delivery Address': formData.get('address') || '',
-        'Delivery Time Slot': slots,
+        'Delivery Time Slot': combinedSlot,
         'Transaction ID': formData.get('transaction') || ''
       };
 
